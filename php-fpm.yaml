@@ -5,8 +5,8 @@ metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
   labels:
-    app: php-fpm
-  name: php-fpm
+    app: vbulletin
+  name: vbulletin
   namespace: vbulletin
 spec:
   progressDeadlineSeconds: 600
@@ -14,7 +14,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: php-fpm
+      app: vbulletin
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,7 +23,7 @@ spec:
   template:
     metadata:
       labels:
-        app: php-fpm
+        app: vbulletin
     spec:
       containers:
         - image: phpdockerio/php:8.1-fpm
