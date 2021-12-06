@@ -26,13 +26,25 @@ spec:
         app: vbulletin
     spec:
       containers:
+        - image: nginx:latest
+          imagePullPolicy: IfNotPresent
+          name: nginx
+          resources:
+            limits:
+              cpu: 100m
+              memory: 150Mi
+            requests:
+              cpu: 50m
+              memory: 100Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
         - image: phpdockerio/php:8.1-fpm
           imagePullPolicy: IfNotPresent
           name: php
           resources:
             limits:
-              cpu: 300m
-              memory: 200Mi
+              cpu: 200m
+              memory: 150Mi
             requests:
               cpu: 100m
               memory: 100Mi
