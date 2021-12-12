@@ -1,6 +1,6 @@
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
@@ -10,7 +10,7 @@ metadata:
   namespace: vbulletin
 spec:
   progressDeadlineSeconds: 600
-  replicas: 1
+  replicas: 5
   revisionHistoryLimit: 10
   selector:
     matchLabels:
