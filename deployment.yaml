@@ -2,8 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "2"
+  annotations: {}
   labels:
     app: vbulletin
   name: vbulletin
