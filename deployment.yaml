@@ -15,11 +15,6 @@ spec:
   selector:
     matchLabels:
       app: vbulletin
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
