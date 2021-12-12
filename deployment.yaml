@@ -33,6 +33,9 @@ spec:
               memory: 100Mi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          volumeMounts:
+            - name: vbulletin
+              mountPath: /var/www/html
         - image: phpdockerio/php:8.1-fpm
           imagePullPolicy: IfNotPresent
           name: php
