@@ -34,7 +34,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - name: vbulletin
-              mountPath: /var/www/html
+              mountPath: /usr/share/nginx/html
         - image: phpdockerio/php:8.1-fpm
           imagePullPolicy: IfNotPresent
           name: php
