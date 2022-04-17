@@ -47,7 +47,7 @@ spec:
             - name: nginx-config-volume
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
-        - image: phpdockerio/php:8.1-fpm
+        - image: phpdockerio/php:7.4-fpm
           imagePullPolicy: IfNotPresent
           name: php
           resources:
