@@ -43,7 +43,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - name: vbulletin
-              mountPath: /usr/share/nginx/html
+              mountPath: /www
             - name: nginx-config-volume
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
@@ -61,7 +61,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - name: vbulletin
-              mountPath: /usr/share/nginx/html
+              mountPath: /www
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
