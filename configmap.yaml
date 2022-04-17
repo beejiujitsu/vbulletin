@@ -13,19 +13,15 @@ data:
         root /www;
         server_name vbulletin;
 
-
-        location ~ \.(gif|jpg|jpeg|png|css)$ {
-        }
-
-        location = /css.php {
-          rewrite ^(.*)$ /core/css.php break;
-        }
-
-        location /install {
-          rewrite ^/install/ /core/install/ break;
-        }
-
         location / {
+          location ~ \.(gif|jpg|jpeg|png|css)$ {
+          }
+          location = /css.php {
+            rewrite ^(.*)$ /core/css.php break;
+          }
+          location /install {
+            rewrite ^/install/ /core/install/ break;
+          }
           rewrite ^/(core/libraries/|includes|core/includes|core/vb|core/vb5|core/admincp|core/modcp) /index.php?routestring=relay/404;
           rewrite (^|/)\.(?!well-known) /index.php?routestring=relay/404;
           rewrite ^/(css|fonts|images|js|core/cache|core/cpstyles|core/clientscript|core/customavatars|core/images|core/store_sitemap)/.*\.php /index.php?routestring=relay/404;
