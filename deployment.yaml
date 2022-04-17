@@ -20,7 +20,17 @@ spec:
         app: vbulletin
     spec:
       containers:
-        - image: nginx:latest
+        - env:
+          - name: DATABASE
+            value: vbsuite
+          - name: DBUSER
+            value: vbuser
+          - name: DBPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: 'mariadb-password'
+                name: 'vbulletin'
+          image: nginx:latest
           imagePullPolicy: IfNotPresent
           name: nginx
           resources:
