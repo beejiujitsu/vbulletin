@@ -52,11 +52,11 @@ spec:
           name: php
           resources:
             limits:
-              cpu: 200m
-              memory: 150Mi
+              cpu: 2000m
+              memory: 2Gi
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 1000m
+              memory: 1000Mi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
