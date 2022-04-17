@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    configmap.reloader.stakater.com/reload: 'nginx-config'
+    reloader.stakater.com/auto: 'true'
   labels:
     app: vbulletin
   name: vbulletin
