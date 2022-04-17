@@ -24,11 +24,11 @@ spec:
           - name: DATABASE
             value: vbsuite
           - name: DBUSER
-            value: vbuser
+            value: root
           - name: DBPASSWORD
             valueFrom:
               secretKeyRef:
-                key: 'mariadb-password'
+                key: 'mariadb-root-password'
                 name: 'vbulletin'
           image: nginx:latest
           imagePullPolicy: IfNotPresent
