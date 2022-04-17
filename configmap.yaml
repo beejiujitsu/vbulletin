@@ -17,15 +17,6 @@ data:
         location ~ \.(gif|jpg|jpeg|png|css)$ {
         }
 
-        location / {
-          rewrite ^/(core/libraries/|includes|core/includes|core/vb|core/vb5|core/admincp|core/modcp) /index.php?routestring=relay/404;
-          rewrite (^|/)\.(?!well-known) /index.php?routestring=relay/404;
-          rewrite ^/(css|fonts|images|js|core/cache|core/cpstyles|core/clientscript|core/customavatars|core/images|core/store_sitemap)/.*\.php /index.php?routestring=relay/404;
-          if (!-e $request_filename){
-            rewrite ^(.*)$ /index.php?routestring=$1 break;
-          }
-        }
-
         location = /css.php {
           rewrite ^(.*)$ /core/css.php break;
         }
@@ -35,6 +26,12 @@ data:
         }
 
         location / {
+          rewrite ^/(core/libraries/|includes|core/includes|core/vb|core/vb5|core/admincp|core/modcp) /index.php?routestring=relay/404;
+          rewrite (^|/)\.(?!well-known) /index.php?routestring=relay/404;
+          rewrite ^/(css|fonts|images|js|core/cache|core/cpstyles|core/clientscript|core/customavatars|core/images|core/store_sitemap)/.*\.php /index.php?routestring=relay/404;
+          if (!-e $request_filename){
+            rewrite ^(.*)$ /index.php?routestring=$1 break;
+          }
           location ~* \.php$ {
               include fastcgi_params;
               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
