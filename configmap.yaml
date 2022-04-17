@@ -10,7 +10,7 @@ data:
       server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root /usr/share/nginx/html;
+        root /www;
         server_name _;
         location / {
           location ~* \.php$ {
