@@ -47,7 +47,7 @@ spec:
             - name: nginx-config-volume
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
-        - image: devilbox/php-fpm:8.2-prod
+        - image: devilbox/php-fpm:7.4-prod
           imagePullPolicy: IfNotPresent
           name: php
           resources:
