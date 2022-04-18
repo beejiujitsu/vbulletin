@@ -13,8 +13,8 @@ spec:
     - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-    - port: 9000
-      targetPort: 80
+    - port: 80
+      targetPort: 9000
       name: fastcgi
   selector:
     app: vbulletin
