@@ -10,7 +10,7 @@ metadata:
 spec:
   progressDeadlineSeconds: 600
   replicas: 3
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: vbulletin
