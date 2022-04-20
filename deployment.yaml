@@ -33,9 +33,6 @@ spec:
                 key: 'mariadb-root-password'
                 name: 'vbulletin'
           name: php
-          ports:
-            - containerPort: 9000
-              name: fastcgi
           resources:
             limits:
               cpu: 1000m
