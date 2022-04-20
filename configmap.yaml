@@ -1,6 +1,43 @@
-apiVersion: v1
 kind: ConfigMap
+apiVersion: v1
 metadata:
   name: nginx-config
 data:
-  SCRIPT_FILENAME: "/index.php"
+  nginx.conf: |
+    events {
+    }
+    http {
+      server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        index index.php index.html
+        root /www;
+        server_name vbulletin;
+
+
+        location ~ \.(gif|jpg|jpeg|png|css)$ {
+        }
+
+        location = /css.php {
+          rewrite ^(.*)$ /core/css.php break;
+        }
+
+        location /install {
+          rewrite ^/install/ /core/install/ break;
+        }
+
+        location / {
+          rewrite ^/(core/libraries/|includes|core/includes|core/vb|core/vb5|core/admincp|core/modcp) /index.php?routestring=relay/404;
+          rewrite (^|/)\.(?!well-known) /index.php?routestring=relay/404;
+          rewrite ^/(css|fonts|images|js|core/cache|core/cpstyles|core/clientscript|core/customavatars|core/images|core/store_sitemap)/.*\.php /index.php?routestring=relay/404;
+          if (!-e $request_filename){
+            rewrite ^(.*)$ /index.php?routestring=$1 break;
+          }
+          location ~* \.php$ {
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              fastcgi_pass 127.0.0.1:9000;
+          }
+        }
+    }
+    }
