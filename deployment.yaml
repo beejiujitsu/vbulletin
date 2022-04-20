@@ -20,7 +20,9 @@ spec:
         app: vbulletin
     spec:
       containers:
-        - env:
+        - image: devilbox/php-fpm:7.4-prod
+          imagePullPolicy: IfNotPresent
+          env:
           - name: DATABASE
             value: vbsuite
           - name: DBUSER
@@ -30,26 +32,6 @@ spec:
               secretKeyRef:
                 key: 'mariadb-root-password'
                 name: 'vbulletin'
-          image: nginx:latest
-          imagePullPolicy: IfNotPresent
-          name: nginx
-          resources:
-            limits:
-              cpu: 100m
-              memory: 150Mi
-            requests:
-              cpu: 50m
-              memory: 100Mi
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - name: vbulletin
-              mountPath: /www
-            - name: nginx-config-volume
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-        - image: devilbox/php-fpm:7.4-prod
-          imagePullPolicy: IfNotPresent
           name: php
           ports:
             - containerPort: 9000
