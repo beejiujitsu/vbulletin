@@ -113,6 +113,12 @@ spec:
         - name: sftp
           image: atmoz/sftp
           imagePullPolicy: Always
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sftp-password
+                  key: password
           args: ["nobody::1001:100:incoming,outgoing"] #create users and dirs
           ports:
             - containerPort: 22
