@@ -29,7 +29,7 @@ spec:
               secretKeyRef:
                 key: 'mariadb-root-password'
                 name: 'vbulletin'
-          image: devilbox/php-fpm:7.4-prod
+          image: php:7.4-fpm
           imagePullPolicy: IfNotPresent
           name: php
           resources:
