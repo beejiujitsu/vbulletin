@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   name: vbulletin
 data:
+  DOCUMENT_ROOT: "/var/www/html"
   SCRIPT_FILENAME: "/index.php"
 ---
 apiVersion: v1
