@@ -1,28 +1,10 @@
 ---
-kind: ConfigMap
 apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: nginx-config
+  name: vbulletin
 data:
-  nginx.conf: |
-    events {
-    }
-    http {
-      server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-        root /www;
-        server_name vbulletin;
-
-        location / {
-          location ~* \.php$ {
-              include fastcgi_params;
-              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-              fastcgi_pass http://php.vbulletin.svc.cluster.local:9000;
-          }
-        }
-    }
-    }
+  SCRIPT_FILENAME: "/index.php"
 ---
 apiVersion: v1
 data:
