@@ -8,7 +8,6 @@ data:
     events {
     }
     http {
-      resolver 127.0.0.53 valid=40s;
       server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -18,7 +17,7 @@ data:
         location / {
           location ~* \.php$ {
               include fastcgi_params;
-              set $php_fpm php.vbulletin.cluster.local:9000;
+              set $php_fpm php.vbulletin.svc.cluster.local:9000;
               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
               fastcgi_pass $php_fpm;
           }
