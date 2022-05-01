@@ -18,19 +18,3 @@ spec:
     name: php
   selector:
     app: php
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: sftp
-  namespace: vbulletin
-  labels:
-    app: sftp
-spec:
-  type: LoadBalancer
-  ports:
-  - name: ssh
-    port: 22
-    targetPort: 22
-  selector:
-    app: sftp
