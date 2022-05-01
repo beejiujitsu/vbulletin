@@ -119,13 +119,13 @@ spec:
                 secretKeyRef:
                   name: sftp-password
                   key: password
-          args: ["nobody::1001:100:incoming,outgoing"] #create users and dirs
+          args: ["vbulletin::1001:100:incoming,outgoing"] #create users and dirs
           ports:
             - containerPort: 22
           volumeMounts:
             - name: vbulletin
               mountPath: /www
-            - mountPath: /home/nobody/.ssh/keys
+            - mountPath: /home/vbulletin/.ssh/keys
               name: sftp-public-keys
               readOnly: true
           securityContext:
@@ -137,4 +137,4 @@ spec:
               memory: 200Mi
             requests:
               cpu: 100m
-              memory: 200Mi
+              memory: 100Mi
