@@ -107,6 +107,8 @@ spec:
        - name: sftp-public-keys
          configMap:
           name: sftp-public-keys
+      nodeSelector:
+        kubernetes.io/arch: amd64
       containers:
         - name: sftp
           image: atmoz/sftp
