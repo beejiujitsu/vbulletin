@@ -5,69 +5,6 @@ metadata:
   annotations:
     reloader.stakater.com/auto: 'true'
   labels:
-    app: nginx
-  name: nginx
-  namespace: vbulletin
-spec:
-  progressDeadlineSeconds: 600
-  replicas: 3
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - env:
-          - name: DATABASE
-            value: vbsuite
-          - name: DBUSER
-            value: root
-          - name: DBPASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: 'mariadb-root-password'
-                name: 'vbulletin'
-          image: nginx:latest
-          imagePullPolicy: IfNotPresent
-          name: nginx
-          resources:
-            limits:
-              cpu: 100m
-              memory: 150Mi
-            requests:
-              cpu: 50m
-              memory: 100Mi
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - name: vbulletin
-              mountPath: /www
-            - name: nginx-config-volume
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      terminationGracePeriodSeconds: 30
-      volumes:
-       - name: vbulletin
-         persistentVolumeClaim:
-           claimName: vbulletin
-           readOnly: false
-       - name: nginx-config-volume
-         configMap:
-           name: nginx-config
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  annotations:
-    reloader.stakater.com/auto: 'true'
-  labels:
     app: php
   name: php
   namespace: vbulletin
@@ -84,7 +21,17 @@ spec:
         app: php
     spec:
       containers:
-        - image: devilbox/php-fpm:7.4-prod
+        - env:
+          - name: DATABASE
+            value: vbsuite
+          - name: DBUSER
+            value: root
+          - name: DBPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: 'mariadb-root-password'
+                name: 'vbulletin'
+          image: devilbox/php-fpm:7.4-prod
           imagePullPolicy: IfNotPresent
           name: php
           resources:
