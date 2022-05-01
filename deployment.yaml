@@ -5,8 +5,8 @@ metadata:
   annotations:
     reloader.stakater.com/auto: 'true'
   labels:
-    app: vbulletin
-  name: vbulletin
+    app: nginx
+  name: nginx
   namespace: vbulletin
 spec:
   progressDeadlineSeconds: 600
@@ -14,11 +14,11 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: vbulletin
+      app: nginx
   template:
     metadata:
       labels:
-        app: vbulletin
+        app: nginx
     spec:
       containers:
         - env:
@@ -49,6 +49,41 @@ spec:
             - name: nginx-config-volume
               mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+       - name: vbulletin
+         persistentVolumeClaim:
+           claimName: vbulletin
+           readOnly: false
+       - name: nginx-config-volume
+         configMap:
+           name: nginx-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    reloader.stakater.com/auto: 'true'
+  labels:
+    app: php
+  name: php
+  namespace: vbulletin
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      containers:
         - image: devilbox/php-fpm:7.4-prod
           imagePullPolicy: IfNotPresent
           name: php
@@ -73,9 +108,6 @@ spec:
          persistentVolumeClaim:
            claimName: vbulletin
            readOnly: false
-       - name: nginx-config-volume
-         configMap:
-           name: nginx-config
 ---
 kind: Deployment
 apiVersion: apps/v1
