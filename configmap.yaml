@@ -5,4 +5,4 @@ metadata:
   name: vbulletin
 data:
   DOCUMENT_ROOT: "/var/www/html"
-  SCRIPT_FILENAME: "/index.php"
+  SCRIPT_FILENAME: $document_root$fastcgi_script_name

@@ -6,6 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "FCGI"
     nginx.ingress.kubernetes.io/fastcgi-index: "index.php"
     nginx.ingress.kubernetes.io/fastcgi-params-configmap: "vbulletin"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: vbulletin
 spec:
   ingressClassName: nginx
