@@ -17,9 +17,8 @@ data:
         location / {
           location ~* \.php$ {
               include fastcgi_params;
-              set $php_fpm php.vbulletin.svc.cluster.local:9000;
               fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-              fastcgi_pass $php_fpm;
+              fastcgi_pass http://php.vbulletin.svc.cluster.local:9000;
           }
         }
     }
