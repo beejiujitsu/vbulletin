@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,8 +14,23 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - nodePort: 30163
-    port: 80
+  - port: 80
   selector:
     app: vbulletin
   type: LoadBalancer
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: sftp
+  namespace: vbulletin
+  labels:
+    app: sftp
+spec:
+  type: LoadBalancer
+  ports:
+  - name: ssh
+    port: 22
+    targetPort: 22
+  selector:
+    app: sftp

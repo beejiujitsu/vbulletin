@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -75,3 +76,57 @@ spec:
        - name: nginx-config-volume
          configMap:
            name: nginx-config
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    reloader.stakater.com/auto: 'true'
+  name: sftp
+  namespace: vbulletin
+  labels:
+    app: sftp
+spec:
+  selector:
+    matchLabels:
+      app: sftp
+  replicas: 1
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: sftp
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/sftp: runtime/default
+    spec:
+      volumes:
+       - name: vbulletin
+         persistentVolumeClaim:
+           claimName: vbulletin
+           readOnly: false
+       - name: sftp-public-keys
+         configMap:
+          name: sftp-public-keys
+      containers:
+        - name: sftp
+          image: atmoz/sftp
+          imagePullPolicy: Always
+          args: ["nobody::1001:100:incoming,outgoing"] #create users and dirs
+          ports:
+            - containerPort: 22
+          volumeMounts:
+            - name: vbulletin
+              mountPath: /www
+            - mountPath: /home/nobody/.ssh/keys
+              name: sftp-public-keys
+              readOnly: true
+          securityContext:
+            capabilities:
+              add: ["SYS_ADMIN"]
+          resources:
+            limits:
+              cpu: 200m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi

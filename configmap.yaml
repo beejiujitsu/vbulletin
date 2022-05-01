@@ -1,3 +1,4 @@
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -40,3 +41,12 @@ data:
         }
     }
     }
+---
+apiVersion: v1
+data:
+  id_rsa.pub: |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCoFCxPrGbJOebt0GvbFP1mtsqOBwT1pno6nmlkMWe526zmdf5IC7Vy+f4HJpqv+NV7Fy3XPgDVyEMml/eAYtPpiOYsnqG53cUw9N5IF7PBr8QfNr13MkvYr4mo7pPfg4gGTSjXLF9Cu50vCjGs9mMQASv3n6LKlKBSqGhPTj9uMk3VBbUvnbyecQX2cMI3UI10wr32qmMkDF6Z4XjvKtwhfhr/oIlrbMdVY3FkuNtT+EhQXql4d5DJMrmnkI0Qg6hCLa+JXuBHjwYjgPN1BdMlKBKfJ3sU1XdrRhHcL6cey+nG4ACMmoO3370KhO5MSKbYHAUMPxkxmyZkRrA0VOCI618uzL8e+eAss4kANzJ1pgmcZvvM2ZBBadQTGffnYJeFPkDpVh7yXAcs7VaQl/N3WnAad+3XdE3aPRarQ9geuJdN67zmzjeAjefAHFOT8EBQ18yCglvpT/2WLJ3iQdWHevfNCy68VUZjLtWV1twbyaRZKwu8FgmzCLVu8xvqAFc= mark@macbook-pro.lan
+kind: ConfigMap
+metadata:
+  name: sftp-public-keys
+  namespace: vbulletin
