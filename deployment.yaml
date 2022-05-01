@@ -45,7 +45,7 @@ spec:
           terminationMessagePolicy: File
           volumeMounts:
             - name: vbulletin
-              mountPath: /www
+              mountPath: /var/www/html
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -104,7 +104,7 @@ spec:
             - containerPort: 22
           volumeMounts:
             - name: vbulletin
-              mountPath: /www
+              mountPath: /var/www/html
             - mountPath: /home/vbulletin/.ssh/keys
               name: sftp-public-keys
               readOnly: true
