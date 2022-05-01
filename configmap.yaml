@@ -11,7 +11,7 @@ data:
       server {
         listen 80 default_server;
         listen [::]:80 default_server;
-        root /www;
+        root /www/$fastcgi_script_name;
         server_name vbulletin;
 
 
