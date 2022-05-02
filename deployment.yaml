@@ -52,6 +52,7 @@ spec:
       securityContext:
         runAsUser: 33
         runAsGroup: 33
+        fsGroup: 0
       terminationGracePeriodSeconds: 30
       volumes:
        - name: vbulletin
