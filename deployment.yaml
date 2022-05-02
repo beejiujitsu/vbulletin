@@ -39,6 +39,8 @@ spec:
             requests:
               cpu: 200m
               memory: 200m
+          securityContext:
+            allowPrivilegeEscalation: false
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
@@ -47,6 +49,9 @@ spec:
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
+      securityContext:
+        runAsUser: 33
+        runAsGroup: 33
       terminationGracePeriodSeconds: 30
       volumes:
        - name: vbulletin
