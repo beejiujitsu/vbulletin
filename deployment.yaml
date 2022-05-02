@@ -18,20 +18,6 @@ spec:
       labels:
         app: php
     spec:
-      initContainers:
-      - name: chown-var-www-html
-        image: busybox
-        command: ["sh","-c","mkdir -p /var/www/html && chown -R 33:33 /var/www/html"]
-        resources:
-          limits:
-            cpu: 200m
-            memory: 200m
-          requests:
-            cpu: 100m
-            memory: 100m
-        volumeMounts:
-          - name: vbulletin
-            mountPath: /var/www/html
       containers:
         - env:
           - name: DATABASE
