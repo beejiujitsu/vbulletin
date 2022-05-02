@@ -44,6 +44,7 @@ spec:
           volumeMounts:
             - name: vbulletin
               mountPath: /var/www/html
+              subPath: html
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
