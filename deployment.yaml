@@ -54,3 +54,5 @@ spec:
          persistentVolumeClaim:
            claimName: vbulletin
            readOnly: false
+  status:
+    qosClass: Guaranteed
