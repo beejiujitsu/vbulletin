@@ -30,7 +30,7 @@ spec:
                 key: 'mariadb-root-password'
                 name: 'vbulletin'
           - name: PORT
-            value: '8080'
+            value: '80'
           image: php:8-apache
           imagePullPolicy: IfNotPresent
           name: php-apache

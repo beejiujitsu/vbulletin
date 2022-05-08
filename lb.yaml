@@ -17,7 +17,7 @@ spec:
   ipFamilyPolicy: SingleStack
   ports:
   - nodePort: 30763
-    port: 8080
+    port: 80
   selector:
     app: php-apache
   type: LoadBalancer
