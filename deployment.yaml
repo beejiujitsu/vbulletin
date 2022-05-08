@@ -3,8 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: php
-  name: php
+    app: php-apache
+  name: php-apache
   namespace: vbulletin
 spec:
   progressDeadlineSeconds: 600
@@ -12,11 +12,11 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: php
+      app: php-apache
   template:
     metadata:
       labels:
-        app: php
+        app: php-apache
     spec:
       containers:
         - env:
@@ -29,9 +29,11 @@ spec:
               secretKeyRef:
                 key: 'mariadb-root-password'
                 name: 'vbulletin'
+          - name: PORT
+            value: '8080'
           image: php:8-apache
           imagePullPolicy: IfNotPresent
-          name: php
+          name: php-apache
           resources:
             limits:
               cpu: 1000m
