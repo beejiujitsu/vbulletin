@@ -18,6 +18,14 @@ spec:
       labels:
         app: php-apache
     spec:
+      initContainers:
+      - name: install-php-extensions
+        image: php:8-apache
+        imagePullPolicy: IfNotPresent
+        command: ['sh', '-c', 'for ext in mysqli; do docker-php-ext-install $ext && docker-php-ext-enable $ext; done']
+        volumeMounts:
+          - name: vbulletin
+            mountPath: /var/www/html
       containers:
         - env:
           - name: DATABASE
