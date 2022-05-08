@@ -3,9 +3,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: php
-    app.kubernetes.io/instance: php
-  name: php
+    app: php-apache
+    app.kubernetes.io/instance: php-apache
+  name: php-apache
   namespace: vbulletin
 spec:
   internalTrafficPolicy: Cluster
