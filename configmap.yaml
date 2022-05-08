@@ -1,9 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vbulletin
-data:
-  DOCUMENT_ROOT: "/var/www/html"
-  SCRIPT_FILENAME: $document_root$fastcgi_script_name
-  HTTP_PROXY: ""
