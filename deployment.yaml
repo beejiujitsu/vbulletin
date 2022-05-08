@@ -22,7 +22,7 @@ spec:
       - name: install-php-extensions
         image: php:8-apache
         imagePullPolicy: IfNotPresent
-        command: ['sh', '-c', 'for ext in mysqli; do docker-php-ext-install $ext && docker-php-ext-enable $ext; done']
+        command: ['sh', '-c', 'for ext in gd mysqli hash json xml mbstring iconv curl argon2; do docker-php-ext-install $ext && docker-php-ext-enable $ext; done']
         volumeMounts:
           - name: vbulletin
             mountPath: /var/www/html
